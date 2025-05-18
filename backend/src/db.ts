@@ -7,6 +7,14 @@ export const checkPoolConnection = (pool: Pool) => {
   pool.getConnection((err) => {
     if (err) throw err;
 
+    const query = "CREATE DATABASE IF NOT EXISTS manga_book_store_db";
+
+    pool.query(query, (err) => {
+      if (err) throw err;
+
+      console.log("database created or already exists");
+    });
+
     console.log("connected to mysql database");
   });
 };
